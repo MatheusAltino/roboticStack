@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  RobotAppServer:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.small
+      ImageId: ami-087c17d1fe0178315
+      SecurityGroups:
+        - !Ref RobotAppSecurityGroup
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a8fcb5cd-cccd-4778-ade6-95dd40b98822
+  RobotAppSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 69ae2cd1-63b6-4069-9437-00b1f994ca5f
+  RobotS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Delete
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a335d51a-2be6-4817-a44c-4c9f7aca47ec
+Metadata:
+  'AWS::CloudFormation::Designer':
+    a335d51a-2be6-4817-a44c-4c9f7aca47ec:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 240
+        'y': 90
+      z: 1
+      embeds: []
+    a8fcb5cd-cccd-4778-ade6-95dd40b98822:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 100
+        'y': 50
+      z: 1
+      embeds: []
+      isassociatedwith:
+        - 69ae2cd1-63b6-4069-9437-00b1f994ca5f
+    69ae2cd1-63b6-4069-9437-00b1f994ca5f:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 110
+        'y': 170
+      z: 1
+      embeds: []
